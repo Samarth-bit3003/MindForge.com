@@ -1,0 +1,233 @@
+/* ==== Reset & Base ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  background: url("C:/Users/SAMARTH YADAV/Downloads/website background 2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==== Navbar ==== */
+.navbar {
+  width: 100%;
+  background: rgba(0, 128, 0, 0.75); /* ✅ transparent green */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.navbar .menu {
+  display: flex;
+  gap: 30px;
+}
+.navbar .menu a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+.navbar .menu a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: white;
+  transition: width 0.3s ease;
+}
+.navbar .menu a:hover {
+  color: #f1f1f1;
+}
+.navbar .menu a:hover::after {
+  width: 100%;
+}
+
+/* ==== Dashboard Container ==== */
+.dashboard {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.85); /* semi-transparent white */
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+.dashboard:hover {
+  transform: translateY(-3px);
+}
+
+/* ==== Profile Header ==== */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.profile-header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #27ae60;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.profile-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+.profile-header .info {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* ==== Action Buttons ==== */
+.actions {
+  margin-top: 15px;
+}
+.actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-edit {
+  background: #27ae60;
+  color: #fff;
+}
+.btn-edit:hover {
+  background: #219150;
+  transform: scale(1.05);
+}
+.btn-logout {
+  background: #e74c3c;
+  color: #fff;
+}
+.btn-logout:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+/* ==== Edit Profile Form ==== */
+.edit-form {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.edit-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.edit-form button {
+  background: #27ae60;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.edit-form button:hover {
+  background: #219150;
+  transform: scale(1.05);
+}
+
+/* ==== Feature Boxes ==== */
+.feature-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+.box {
+  background: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 14px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  color: #2c3e50;
+}
+.box:hover {
+  background: #27ae60; /* ✅ green hover */
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* ==== AI Assistant (Bottom Left) ==== */
+.ai-assistant {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+.ai-assistant:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.ai-assistant img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.ai-assistant span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}

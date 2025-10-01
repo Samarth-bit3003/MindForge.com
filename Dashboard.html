@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MindForge Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <style>
+    /* ==== Feature Boxes ==== */
+    .feature-boxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .box {
+      background: #f4f4f4;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 14px;
+      font-weight: bold;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .box:hover {
+      background: #9932CC;
+      color: #fff;
+      transform: scale(1.08);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    /* ==== AI Assistant (Bottom Left) ==== */
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      padding: 10px 15px;
+      border-radius: 50px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .ai-assistant:hover {
+      transform: scale(1.05);
+    }
+    .ai-assistant img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .ai-assistant span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* ==== Profile Menu (3 Dots Dropdown) ==== */
+    .profile-menu {
+      position: relative;
+    }
+    .dots {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      min-width: 220px;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    .dropdown .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+    }
+    .dropdown .profile-header img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #9932CC;
+    }
+    .dropdown .profile-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #333;
+    }
+    .dropdown .profile-header p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .dropdown-btn {
+      width: 100%;
+      padding: 10px 12px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .dropdown-btn:hover {
+      background: #f4f4f4;
+    }
+
+    /* ==== Edit Profile Form ==== */
+    .edit-form {
+      display: none;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+    .edit-form input,
+    .edit-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    .edit-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .edit-form button {
+      background: #2ecc71;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .edit-form button:hover {
+      background: #27ae60;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Navbar -->
+  <div class="navbar">
+    <div class="logo">MindForge</div>
+    <div class="menu">
+      <a href="#">🏠 Home</a>
+      <a href="#">ℹ️ About</a>
+      <a href="#">👨‍💻 Creators</a>
+      <a href="#">🔥 Streak</a>
+      <a href="#">🏆 Challenges</a>
+      <a href="#">🥇 Wins</a>
+      <a href="#">👥 Team</a>
+
+      <!-- 🔹 Profile Dropdown -->
+      <div class="profile-menu">
+        <button class="dots">⋮</button>
+        <div class="dropdown">
+          <div class="profile-header">
+            <img id="profile-pic" src="/uploads/default.png" alt="Profile Picture">
+            <div>
+              <h3 id="user-name">User Name</h3>
+              <p id="user-email">user@example.com</p>
+            </div>
+          </div>
+          <hr>
+          <button class="dropdown-btn" onclick="toggleEdit()">✏️ Edit Profile</button>
+          <button class="dropdown-btn" onclick="logout()">🚪 Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Dashboard -->
+  <div class="dashboard">
+    <!-- 🔹 Feature Boxes -->
+    <div class="feature-boxes">
+      <div class="box">💬 Chat</div>
+      <div class="box">⚔️ Compete</div>
+      <div class="box">👥 Create Team</div>
+      <div class="box">📝 Notes</div>
+      <div class="box">📖 Learn</div>
+    </div>
+  </div>
+
+  <!-- 🔹 AI Assistant (Bottom Left) -->
+  <div class="ai-assistant" onclick="askAI()">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" alt="AI Assistant">
+    <span>Ask me anything!</span>
+  </div>
+
+  <!-- 🔹 Hidden Edit Form -->
+  <form class="edit-form" id="editForm" enctype="multipart/form-data">
+    <input type="text" id="editName" placeholder="Full Name">
+    <textarea id="editBio" placeholder="Bio"></textarea>
+    <input type="file" id="editPic">
+    <button type="submit">💾 Save Changes</button>
+  </form>
+
+  <script>
+    // Example: User data (replace with API data)
+    const user = {
+      name: "Samarth Yadav",
+      email: "3samarthyadav@gmail.com",
+      bio: "Full Stack Developer & Tech Enthusiast",
+      profilePic: "/uploads/default.png"
+    };
+
+    // Load user data into dropdown
+    document.getElementById("user-name").innerText = user.name;
+    document.getElementById("user-email").innerText = user.email;
+    document.getElementById("profile-pic").src = user.profilePic;
+
+    // Toggle profile dropdown
+    document.querySelector(".dots").addEventListener("click", () => {
+      const dropdown = document.querySelector(".dropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener("click", (e) => {
+      const profileMenu = document.querySelector(".profile-menu");
+      if (!profileMenu.contains(e.target)) {
+        document.querySelector(".dropdown").style.display = "none";
+      }
+    });
+
+    // Toggle edit form
+    function toggleEdit() {
+      const form = document.getElementById("editForm");
+      form.style.display = form.style.display === "block" ? "none" : "block";
+      document.getElementById("editName").value = user.name;
+      document.getElementById("editBio").value = user.bio;
+    }
+
+    // Handle profile update
+    document.getElementById("editForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const updatedName = document.getElementById("editName").value;
+      const updatedBio = document.getElementById("editBio").value;
+      const updatedPic = document.getElementById("editPic").files[0];
+
+      console.log("Updated profile:", updatedName, updatedBio, updatedPic);
+
+      // Update UI instantly
+      document.getElementById("user-name").innerText = updatedName;
+      document.getElementById("user-bio")?.innerText = updatedBio;
+
+      alert("✅ Profile updated!");
+      toggleEdit();
+    });
+
+    // Logout function
+    function logout() {
+      alert("🚪 Logged out!");
+      window.location.href = "/login";
+    }
+
+    // AI Assistant function
+    function askAI() {
+      alert("🤖 Hi! I’m your AI assistant. What’s your question?");
+    }
+  </script>
+</body>
+</html>
