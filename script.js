@@ -53,7 +53,7 @@ document.getElementById("signInForm").addEventListener("submit", async (e) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     alert(`✅ Logged in as ${userCredential.user.email}`);
     // redirect to dashboard later
-    window.location.href = "dashboard.html";
+    window.location.href = "Dashboard.html";
   } catch (error) {
     alert(`❌ ${error.message}`);
   }
